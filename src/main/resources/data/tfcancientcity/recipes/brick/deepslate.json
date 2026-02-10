@@ -1,0 +1,8 @@
+{
+    "ingredient":  {
+                       "item":  "tfcancientcity:rock/cobble/deepslate"
+                   },
+    "result":  "tfcancientcity:brick/deepslate",
+    "count":  2,
+    "type":  "minecraft:stonecutting"
+}

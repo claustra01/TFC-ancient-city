@@ -1,0 +1,11 @@
+{
+    "ingredients":  [
+                        {
+                            "item":  "minecraft:cobbled_deepslate"
+                        }
+                    ],
+    "result":  {
+                   "item":  "tfcancientcity:rock/cobble/deepslate"
+               },
+    "type":  "minecraft:crafting_shapeless"
+}

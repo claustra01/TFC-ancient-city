@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XYX",
+    "YXY",
+    "XYX"
+  ],
+  "key": {
+    "X": {
+      "item": "tfcancientcity:brick/deepslate"
+    },
+    "Y": {
+      "item": "tfc:mortar"
+    }
+  },
+  "result": {
+    "item": "minecraft:deepslate_bricks",
+    "count": 4
+  }
+}

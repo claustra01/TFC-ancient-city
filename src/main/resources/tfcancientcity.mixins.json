@@ -1,0 +1,11 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "net.claustra01.tfcancientcity.mixin",
+  "mixins": [
+    "StructureTemplateManagerMixin",
+    "StructureTemplateMixin"
+  ],
+  "client": [],
+  "server": []
+}
