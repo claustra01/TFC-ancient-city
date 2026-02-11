@@ -1,6 +1,6 @@
 package net.claustra01.tfcancientcity.mixin;
 
-import net.claustra01.tfcancientcity.mixin.accessor.StructureTemplateIdAccessor;
+import net.claustra01.tfcancientcity.accessor.StructureTemplateIdAccessor;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplate;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemplateManager;

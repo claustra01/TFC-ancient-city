@@ -1,4 +1,4 @@
-package net.claustra01.tfcancientcity.mixin.accessor;
+package net.claustra01.tfcancientcity.accessor;
 
 import javax.annotation.Nullable;
 import net.minecraft.resources.ResourceLocation;

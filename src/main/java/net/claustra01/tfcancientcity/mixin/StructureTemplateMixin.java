@@ -3,7 +3,7 @@ package net.claustra01.tfcancientcity.mixin;
 import java.util.List;
 import javax.annotation.Nullable;
 import net.claustra01.tfcancientcity.TfcBlockReplacementProcessor;
-import net.claustra01.tfcancientcity.mixin.accessor.StructureTemplateIdAccessor;
+import net.claustra01.tfcancientcity.accessor.StructureTemplateIdAccessor;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;
