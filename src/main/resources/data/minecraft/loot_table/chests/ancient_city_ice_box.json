@@ -5,29 +5,8 @@
       "bonus_rolls": 0.0,
       "entries": [
         {
-          "type": "minecraft:item",
+          "type": "minecraft:loot_table",
           "functions": [
-            {
-              "effects": [
-                {
-                  "type": "minecraft:night_vision",
-                  "duration": {
-                    "type": "minecraft:uniform",
-                    "max": 10.0,
-                    "min": 7.0
-                  }
-                },
-                {
-                  "type": "minecraft:blindness",
-                  "duration": {
-                    "type": "minecraft:uniform",
-                    "max": 7.0,
-                    "min": 5.0
-                  }
-                }
-              ],
-              "function": "minecraft:set_stew_effect"
-            },
             {
               "add": false,
               "count": {
@@ -38,10 +17,10 @@
               "function": "minecraft:set_count"
             }
           ],
-          "name": "minecraft:suspicious_stew"
+          "value": "tfcancientcity:shared/produce"
         },
         {
-          "type": "minecraft:item",
+          "type": "minecraft:loot_table",
           "functions": [
             {
               "add": false,
@@ -53,10 +32,10 @@
               "function": "minecraft:set_count"
             }
           ],
-          "name": "minecraft:golden_carrot"
+          "value": "tfcancientcity:shared/produce"
         },
         {
-          "type": "minecraft:item",
+          "type": "minecraft:loot_table",
           "functions": [
             {
               "add": false,
@@ -68,7 +47,7 @@
               "function": "minecraft:set_count"
             }
           ],
-          "name": "minecraft:baked_potato"
+          "value": "tfcancientcity:shared/produce"
         },
         {
           "type": "minecraft:item",

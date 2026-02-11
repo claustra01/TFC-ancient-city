@@ -57,7 +57,7 @@
           "weight": 2
         },
         {
-          "type": "minecraft:item",
+          "type": "minecraft:loot_table",
           "functions": [
             {
               "add": false,
@@ -83,7 +83,7 @@
               "options": "#minecraft:on_random_loot"
             }
           ],
-          "name": "minecraft:diamond_hoe",
+          "value": "tfcancientcity:shared/equipment_ancient_city",
           "weight": 2
         },
         {
@@ -99,7 +99,7 @@
           "weight": 2
         },
         {
-          "type": "minecraft:item",
+          "type": "minecraft:loot_table",
           "functions": [
             {
               "add": false,
@@ -107,7 +107,7 @@
               "function": "minecraft:set_count"
             }
           ],
-          "name": "minecraft:diamond_horse_armor",
+          "value": "tfcancientcity:shared/horse_armor_ancient_city",
           "weight": 2
         },
         {
@@ -133,7 +133,7 @@
           "weight": 2
         },
         {
-          "type": "minecraft:item",
+          "type": "minecraft:loot_table",
           "functions": [
             {
               "function": "minecraft:enchant_with_levels",
@@ -145,7 +145,7 @@
               "options": "#minecraft:on_random_loot"
             }
           ],
-          "name": "minecraft:diamond_leggings",
+          "value": "tfcancientcity:shared/equipment_ancient_city",
           "weight": 2
         },
         {
@@ -208,7 +208,7 @@
           "weight": 3
         },
         {
-          "type": "minecraft:item",
+          "type": "minecraft:loot_table",
           "functions": [
             {
               "add": false,
@@ -220,7 +220,7 @@
               "function": "minecraft:set_count"
             }
           ],
-          "name": "minecraft:amethyst_shard",
+          "value": "tfcancientcity:shared/gems",
           "weight": 3
         },
         {
@@ -240,7 +240,7 @@
           "weight": 3
         },
         {
-          "type": "minecraft:item",
+          "type": "minecraft:loot_table",
           "functions": [
             {
               "add": false,
@@ -252,11 +252,11 @@
               "function": "minecraft:set_count"
             }
           ],
-          "name": "minecraft:glow_berries",
+          "value": "tfcancientcity:shared/produce",
           "weight": 3
         },
         {
-          "type": "minecraft:item",
+          "type": "minecraft:loot_table",
           "functions": [
             {
               "function": "minecraft:enchant_with_levels",
@@ -268,7 +268,7 @@
               "options": "#minecraft:on_random_loot"
             }
           ],
-          "name": "minecraft:iron_leggings",
+          "value": "tfcancientcity:shared/equipment_ancient_city",
           "weight": 3
         },
         {
@@ -383,7 +383,7 @@
           "weight": 5
         },
         {
-          "type": "minecraft:item",
+          "type": "minecraft:loot_table",
           "functions": [
             {
               "add": false,
@@ -395,7 +395,7 @@
               "function": "minecraft:set_count"
             }
           ],
-          "name": "minecraft:coal",
+          "value": "tfcancientcity:shared/coal_like",
           "weight": 7
         }
       ],
