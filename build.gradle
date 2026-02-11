@@ -18,6 +18,15 @@ group = mod_group_id
 
 repositories {
     // Add here additional repositories if required by some of the dependencies below.
+    maven {
+        url = "https://maven.blamejared.com"
+    }
+    maven {
+        url = "https://cursemaven.com"
+        content {
+            includeGroup "curse.maven"
+        }
+    }
 }
 
 base {
@@ -95,6 +104,10 @@ dependencies {
     // And its provides the option to then use net.minecraft as the group, and one of; client, server or joined as the module name, plus the game version as version.
     // For all intends and purposes: You can treat this dependency as if it is a normal library you would use.
     implementation "net.neoforged:neoforge:${neo_version}"
+
+    // Runtime mod dependencies (for dev runs). Keep them out of published metadata.
+    localRuntime "curse.maven:terrafirmacraft-302973:7476548"
+    localRuntime "vazkii.patchouli:Patchouli:1.21.1-92-NEOFORGE"
 
     // Example optional mod dependency with JEI
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime

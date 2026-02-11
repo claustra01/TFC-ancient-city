@@ -8,6 +8,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.ServerLevelAccessor;
@@ -15,6 +16,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.Property;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructurePlaceSettings;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProcessor;
@@ -27,24 +29,41 @@ public final class TfcBlockReplacementProcessor extends StructureProcessor {
 
     private record Replacement(ResourceLocation to, boolean clearNbt) {}
 
+    private static final String NS_TFC = "tfc";
+    private static final ResourceLocation TFC_FIREPIT = tfc("firepit");
+
+    private TfcBlockReplacementProcessor() {}
+
     // Intentionally small and specific: only replace blocks that are present in vanilla Ancient City structure templates
     // and have clear 1:1 TFC equivalents. Everything else stays vanilla.
     private static final Map<Block, Replacement> REPLACEMENTS = Map.ofEntries(
         Map.entry(Blocks.DARK_OAK_LOG, new Replacement(tfc("wood/log/blackwood"), false)),
         Map.entry(Blocks.DARK_OAK_PLANKS, new Replacement(tfc("wood/planks/blackwood"), false)),
+        Map.entry(Blocks.DARK_OAK_SLAB, new Replacement(tfc("wood/planks/blackwood_slab"), false)),
+        Map.entry(Blocks.DARK_OAK_STAIRS, new Replacement(tfc("wood/planks/blackwood_stairs"), false)),
         Map.entry(Blocks.DARK_OAK_FENCE, new Replacement(tfc("wood/fence/blackwood"), false)),
+        Map.entry(Blocks.DARK_OAK_FENCE_GATE, new Replacement(tfc("wood/fence_gate/blackwood"), false)),
+        Map.entry(Blocks.DARK_OAK_DOOR, new Replacement(tfc("wood/door/blackwood"), false)),
+        Map.entry(Blocks.DARK_OAK_TRAPDOOR, new Replacement(tfc("wood/trapdoor/blackwood"), false)),
+        Map.entry(Blocks.DARK_OAK_BUTTON, new Replacement(tfc("wood/button/blackwood"), false)),
+        Map.entry(Blocks.DARK_OAK_PRESSURE_PLATE, new Replacement(tfc("wood/pressure_plate/blackwood"), false)),
 
         Map.entry(Blocks.CHEST, new Replacement(tfc("wood/chest/blackwood"), false)),
+        Map.entry(Blocks.TRAPPED_CHEST, new Replacement(tfc("wood/trapped_chest/blackwood"), false)),
         Map.entry(Blocks.LECTERN, new Replacement(tfc("wood/lectern/blackwood"), false)),
 
         Map.entry(Blocks.CANDLE, new Replacement(tfc("candle"), false)),
         Map.entry(Blocks.WHITE_CANDLE, new Replacement(tfc("candle/white"), false)),
         Map.entry(Blocks.TORCH, new Replacement(tfc("torch"), false)),
+        Map.entry(Blocks.WALL_TORCH, new Replacement(tfc("wall_torch"), false)),
 
         // Vanilla camp structures include furnaces/campfires. TFC uses a firepit instead.
         // We clear block entity NBT because furnace/campfire tags don't make sense on a firepit.
-        Map.entry(Blocks.FURNACE, new Replacement(tfc("firepit"), true)),
-        Map.entry(Blocks.CAMPFIRE, new Replacement(tfc("firepit"), true)),
+        Map.entry(Blocks.FURNACE, new Replacement(TFC_FIREPIT, true)),
+        Map.entry(Blocks.CAMPFIRE, new Replacement(TFC_FIREPIT, true)),
+        Map.entry(Blocks.SOUL_CAMPFIRE, new Replacement(TFC_FIREPIT, true)),
+        Map.entry(Blocks.SMOKER, new Replacement(TFC_FIREPIT, true)),
+        Map.entry(Blocks.BLAST_FURNACE, new Replacement(TFC_FIREPIT, true)),
 
         Map.entry(Blocks.IRON_TRAPDOOR, new Replacement(tfc("metal/trapdoor/wrought_iron"), false))
     );
@@ -88,6 +107,9 @@ public final class TfcBlockReplacementProcessor extends StructureProcessor {
             }
 
             BlockState replaced = copyPropertiesByName(in, maybeOutBlock.get().defaultBlockState());
+            if (TFC_FIREPIT.equals(replacement.to())) {
+                replaced = applyFirepitAxisFromFacing(in, replaced);
+            }
             out.add(new StructureTemplate.StructureBlockInfo(info.pos(), replaced, replacement.clearNbt() ? null : info.nbt()));
         }
 
@@ -100,7 +122,27 @@ public final class TfcBlockReplacementProcessor extends StructureProcessor {
     }
 
     private static ResourceLocation tfc(String path) {
-        return ResourceLocation.fromNamespaceAndPath("tfc", path);
+        return ResourceLocation.fromNamespaceAndPath(NS_TFC, path);
+    }
+
+    private static BlockState applyFirepitAxisFromFacing(BlockState from, BlockState firepit) {
+        if (!from.hasProperty(BlockStateProperties.HORIZONTAL_FACING)) {
+            return firepit;
+        }
+
+        Direction facing = from.getValue(BlockStateProperties.HORIZONTAL_FACING);
+        Direction.Axis axis = facing.getAxis();
+        if (axis != Direction.Axis.X && axis != Direction.Axis.Z) {
+            return firepit;
+        }
+
+        if (firepit.hasProperty(BlockStateProperties.HORIZONTAL_AXIS)) {
+            return firepit.setValue(BlockStateProperties.HORIZONTAL_AXIS, axis);
+        }
+        if (firepit.hasProperty(BlockStateProperties.AXIS)) {
+            return firepit.setValue(BlockStateProperties.AXIS, axis);
+        }
+        return firepit;
     }
 
     @SuppressWarnings({"rawtypes", "unchecked"})

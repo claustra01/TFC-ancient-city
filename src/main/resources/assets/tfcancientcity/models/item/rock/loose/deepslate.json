@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "tfcancientcity:item/loose_rock/deepslate"
+  }
+}
+

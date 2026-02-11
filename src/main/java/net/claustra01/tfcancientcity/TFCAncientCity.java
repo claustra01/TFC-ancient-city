@@ -21,7 +21,7 @@ public class TFCAncientCity {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MODID);
     public static final DeferredRegister<StructureProcessorType<?>> PROCESSORS = DeferredRegister.create(Registries.STRUCTURE_PROCESSOR, MODID);
 
-    public static final DeferredItem<Item> DEEPSLATE_COBBLE_ITEM = ITEMS.register("rock/cobble/deepslate",
+    public static final DeferredItem<Item> DEEPSLATE_LOOSE_ROCK_ITEM = ITEMS.register("rock/loose/deepslate",
         () -> new Item(new Item.Properties()));
     public static final DeferredItem<Item> DEEPSLATE_BRICK_ITEM = ITEMS.register("brick/deepslate",
         () -> new Item(new Item.Properties()));
